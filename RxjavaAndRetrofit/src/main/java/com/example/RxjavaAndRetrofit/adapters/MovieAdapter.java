@@ -23,6 +23,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder>
     private Context context;
     private List<MovieModel.SubjectsBean> mDataList;
 
+    //初始化Adapter
     public MovieAdapter(Context context,List<MovieModel.SubjectsBean> dataList) {
         this.context=context;
         this.mDataList=dataList;
