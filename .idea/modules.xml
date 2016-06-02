@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidApplication.iml" filepath="$PROJECT_DIR$/AndroidApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidtemp/AndroidTemp.iml" filepath="$PROJECT_DIR$/androidtemp/AndroidTemp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomView/CustomView.iml" filepath="$PROJECT_DIR$/CustomView/CustomView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxjavaAndRetrofit/RxjavaAndRetrofit.iml" filepath="$PROJECT_DIR$/RxjavaAndRetrofit/RxjavaAndRetrofit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/graphics2D_01/graphics2D_01.iml" filepath="$PROJECT_DIR$/graphics2D_01/graphics2D_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/navigationactivity/navigationactivity.iml" filepath="$PROJECT_DIR$/navigationactivity/navigationactivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scollingactivity/scollingactivity.iml" filepath="$PROJECT_DIR$/scollingactivity/scollingactivity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/timerpicker/timerpicker.iml" filepath="$PROJECT_DIR$/timerpicker/timerpicker.iml" />
+    </modules>
+  </component>
+</project>
