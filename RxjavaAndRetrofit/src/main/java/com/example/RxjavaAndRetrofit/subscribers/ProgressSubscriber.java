@@ -23,13 +23,13 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
 
     @Override
     public void onStart() {
-        showProgressDialog();
+        //showProgressDialog();//显示ProgressDialog
     }
 
     @Override
     public void onCompleted() {
-        dismissProgressDialog();
-        Toast.makeText(context, "Get Top Movie Completed", Toast.LENGTH_SHORT).show();
+        //dismissProgressDialog(); 隐藏ProgressDialog
+        //Toast.makeText(context, "Get Data Completed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

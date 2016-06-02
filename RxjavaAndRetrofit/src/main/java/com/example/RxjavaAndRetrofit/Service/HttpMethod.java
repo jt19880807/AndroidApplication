@@ -47,13 +47,6 @@ public class HttpMethod {
         return singlectionHolder.INSTANCE;
     }
 
-//    public void getTopMovie(Subscriber<MovieModel> subscriber,int start,int count){
-//        movieService.getTopMoview(start,count)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(subscriber);
-//    }
-
     public  void getTopMovie(Subscriber<List<MovieModel.SubjectsBean>> subscriber,int start,int count){
         movieService.getTopMovie(start,count)
                 .map(new HttpResultFunc<List<MovieModel.SubjectsBean>>())

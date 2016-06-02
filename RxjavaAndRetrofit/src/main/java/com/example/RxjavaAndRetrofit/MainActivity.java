@@ -1,5 +1,8 @@
 package com.example.RxjavaAndRetrofit;
 
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.RxjavaAndRetrofit.Model.HttpResult;
@@ -35,14 +39,12 @@ import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn;
-//    private TextView textView;
     private Subscriber<List<MovieModel.SubjectsBean>> subscriber;
     private SubscriberOnNextListener getTopMovieOnNext;
     private MovieAdapter movieAdapter;
     private RecyclerView recyclerView;
     private List<MovieModel.SubjectsBean> datalist=new ArrayList<>();
-    private ImageView imageView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,41 +56,48 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void initData() {
-        datalist=new ArrayList<>();
-        MovieModel.SubjectsBean sb=new MovieModel.SubjectsBean();
-        sb.setTitle("猫和老鼠");
-        sb.setYear("2005");
-        datalist.add(sb);
-
-    }
-
     private void init() {
-
-        btn=(Button)findViewById(R.id.btnId);
         recyclerView= (RecyclerView) findViewById(R.id.datalist);
+        mSwipeRefreshLayout= (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         movieAdapter=new MovieAdapter(MainActivity.this,datalist);
         recyclerView.setAdapter(movieAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         getTopMovieOnNext=new SubscriberOnNextListener<List<MovieModel.SubjectsBean>>(){
             @Override
             public void onNext(List<MovieModel.SubjectsBean> subjectsBeen) {
-//                Log.d("Log1",subjectsBeen.size()+"");
-                //datalist=subjectsBeen;
-                datalist.clear();
-                datalist.addAll(subjectsBeen);
-                movieAdapter.notifyDataSetChanged();
 
+                if(datalist.size()>0) {
+
+                    Log.d("Log","=="+(datalist.get(0).getId() == subjectsBeen.get(0).getId()));
+                    if (datalist.get(0).getId() == subjectsBeen.get(0).getId()) {
+
+
+                        Toast.makeText(MainActivity.this, "没有最新数据", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Log.d("Log","datalist-->"+datalist.get(0).getId());
+                        Log.d("Log","subjectsBeen-->"+subjectsBeen.get(0).getId());
+                        datalist.clear();
+                        datalist.addAll(subjectsBeen);
+                        movieAdapter.notifyDataSetChanged();
+                    }
+                }
+                else {
+                    datalist.clear();
+                    datalist.addAll(subjectsBeen);
+                    movieAdapter.notifyDataSetChanged();
+                }
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         };
-        //movieAdapter=new MovieAdapter(MainActivity.this,datalist);
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        //设置圆形动画额颜色(最多可设置四个)
+        mSwipeRefreshLayout.setColorSchemeColors(Color.RED,Color.BLUE);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View view) {
-                getMovie(10,20);
+            public void onRefresh() {
+                getMovie(0,10);
             }
         });
-
 
     }
 
