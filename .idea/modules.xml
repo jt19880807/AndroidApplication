@@ -5,6 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidApplication.iml" filepath="$PROJECT_DIR$/AndroidApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidtemp/AndroidTemp.iml" filepath="$PROJECT_DIR$/androidtemp/AndroidTemp.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomView/CustomView.iml" filepath="$PROJECT_DIR$/CustomView/CustomView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JTAppStore/JTAppStore.iml" filepath="$PROJECT_DIR$/JTAppStore/JTAppStore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JTHuaBan/JTHuaBan.iml" filepath="$PROJECT_DIR$/JTHuaBan/JTHuaBan.iml" />
       <module fileurl="file://$PROJECT_DIR$/RxjavaAndRetrofit/RxjavaAndRetrofit.iml" filepath="$PROJECT_DIR$/RxjavaAndRetrofit/RxjavaAndRetrofit.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app2/app2.iml" filepath="$PROJECT_DIR$/app2/app2.iml" />

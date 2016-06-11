@@ -6,4 +6,5 @@ package com.JTAppStore.common;
 public class AppConstant {
     /*SharePreferences文件名的文件名*/
     public static final String SHAREPATH="JTAppStore";
+    public static final String GUIDE_SHOW="guide_show";
 }

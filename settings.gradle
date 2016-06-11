@@ -1,1 +1,1 @@
-include ':app', ':CustomView', ':timerpicker', ':graphics2D_01', ':graphics2D_01', ':app2', ':scollingactivity', ':AndroidTemp', ':androidtemp', ':navigationactivity', ':RxjavaAndRetrofit', ':'
+include ':app', ':CustomView', ':timerpicker', ':graphics2D_01', ':graphics2D_01', ':app2', ':scollingactivity', ':AndroidTemp', ':androidtemp', ':navigationactivity', ':RxjavaAndRetrofit', ':JTHuaBan', ':JTAppStore'
