@@ -19,6 +19,12 @@ import jt.com.JTHuaBan.R;
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private String[] types;
+    private String[] titles;
+    private DrawerLayout drawer;
+    private  Toolbar toolbar;
+    private FloatingActionButton fab;
+    private NavigationView navigationView;
     @Override
     protected String getTAG() {
         return MainActivity.class.getSimpleName();
@@ -32,10 +38,16 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        getData();//获取数据
+        initView();//加载组件
+        initDrawer(toolbar);
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+    private void initView() {
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,15 +55,20 @@ public class MainActivity extends BaseActivity
                         .setAction("Action", null).show();
             }
         });
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+    private void getData() {
+        types=getResources().getStringArray(R.array.type_array);
+        titles=getResources().getStringArray(R.array.title_array);
+    }
+
+    private void initDrawer(Toolbar toolbar){
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
