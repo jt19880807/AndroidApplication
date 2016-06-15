@@ -3,6 +3,7 @@ package jt.com.JTHuaBan.Module.Main;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +26,8 @@ public class MainActivity extends BaseActivity
     private Toolbar toolbar;
     private FloatingActionButton fab;
     private NavigationView navigationView;
+    private final int mDrawableList[] = {R.drawable.ic_loyalty_black_36dp, R.drawable.ic_camera_black_36dp,
+            R.drawable.ic_message_black_36dp, R.drawable.ic_people_black_36dp};
     @Override
     protected String getTAG() {
         return MainActivity.class.getSimpleName();
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity
         getData();//获取数据
         initView();//加载组件
         initDrawer(toolbar);
+        initMenu();
     }
 
     private void initView() {
@@ -51,7 +55,7 @@ public class MainActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "我是Snackbar", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -62,6 +66,7 @@ public class MainActivity extends BaseActivity
     private void getData() {
         types=getResources().getStringArray(R.array.type_array);
         titles=getResources().getStringArray(R.array.title_array);
+        Log.d("text",titles.length+"");
     }
 
     private void initDrawer(Toolbar toolbar){
@@ -71,6 +76,23 @@ public class MainActivity extends BaseActivity
         toggle.syncState();
     }
 
+    //填充Menu
+    private void initMenu() {
+        //Log.d("text",titles.length+"");
+        Menu menu=navigationView.getMenu();
+//        menu.add(R.id.menu_group_type,1,Menu.NONE,titles[0])
+//                .setIcon(mDrawableList[0])
+//                .setCheckable(true);
+        Log.d("text",titles.length+"");
+        for(int i=0;i<titles.length;i++){
+            Log.d("text",i+"");
+            menu.add(R.id.menu_group_type,i+1,Menu.NONE,titles[i])
+                    .setIcon(mDrawableList[0])
+                    .setCheckable(true);
+        }
+        menu.getItem(0).setChecked(true);
+
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
