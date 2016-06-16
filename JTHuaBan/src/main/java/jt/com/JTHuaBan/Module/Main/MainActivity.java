@@ -26,8 +26,11 @@ public class MainActivity extends BaseActivity
     private Toolbar toolbar;
     private FloatingActionButton fab;
     private NavigationView navigationView;
-    private final int mDrawableList[] = {R.drawable.ic_loyalty_black_36dp, R.drawable.ic_camera_black_36dp,
-            R.drawable.ic_message_black_36dp, R.drawable.ic_people_black_36dp};
+    private final int mDrawableList[] = {R.drawable.ic_loyalty_black_36dp,
+            R.drawable.ic_camera_black_36dp,
+            R.drawable.ic_menu_camera,
+            R.drawable.ic_menu_gallery,
+            R.drawable.ic_menu_slideshow};
     @Override
     protected String getTAG() {
         return MainActivity.class.getSimpleName();
@@ -78,11 +81,7 @@ public class MainActivity extends BaseActivity
 
     //填充Menu
     private void initMenu() {
-        //Log.d("text",titles.length+"");
         Menu menu=navigationView.getMenu();
-//        menu.add(R.id.menu_group_type,1,Menu.NONE,titles[0])
-//                .setIcon(mDrawableList[0])
-//                .setCheckable(true);
         Log.d("text",titles.length+"");
         for(int i=0;i<titles.length;i++){
             Log.d("text",i+"");

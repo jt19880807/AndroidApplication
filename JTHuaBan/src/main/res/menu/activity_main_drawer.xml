@@ -6,7 +6,8 @@
         android:menuCategory="container">
 
     </group>
-    <item android:title="@string/app_name">
+    <item android:title="@string/app_name"
+        android:menuCategory="system">
         <menu>
             <item android:id="@+id/nav_set"
                 android:title="设置"
