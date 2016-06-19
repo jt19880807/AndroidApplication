@@ -28,7 +28,9 @@ public abstract class BaseAppCompatActivity extends FragmentActivity {
             window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-        setContentView(getLayoutId());
+        if(getLayoutId()!=0){
+            setContentView(getLayoutId());
+        }
     }
 
     @Override
