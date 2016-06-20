@@ -13,7 +13,8 @@ import android.view.View;
  * Created by mcdull.
  * 视觉差异化效果器
  */
-public class ColorAnimationView extends View implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener {
+public class ColorAnimationView extends View implements ValueAnimator.AnimatorUpdateListener,
+                                                        Animator.AnimatorListener {
 
 
     private static final int RED = 0xffFF8080;
