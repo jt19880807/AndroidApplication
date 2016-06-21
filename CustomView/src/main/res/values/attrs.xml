@@ -6,6 +6,22 @@
             <enum name="left" value="0"/>
             <enum name="right" value="1"/>
         </attr>
+
+        <!--自定义拖动按钮-->
+        <!--横向节点数量-->
+        <attr name="hor_number" format="integer"/>
+        <!--横向节点文字，用中文字符“，”分隔-->
+        <attr name="nodestext" format="string"/>
+        <!--文字大小-->
+        <attr name="text_size" format="float"/>
+        <!--文字颜色-->
+        <attr name="text_color" format="color"/>
+        <!--可拖动图片-->
+        <attr name="drag_icon" format="reference"/>
+        <!--标题底下的图标-->
+        <attr name="type_icon" format="reference"/>
+        <!--节点颜色-->
+        <attr name="circle_color" format="color"/>
     </declare-styleable>
         
 </resources>

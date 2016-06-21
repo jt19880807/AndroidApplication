@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.diyview.PieChar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        toolbar:lablePosition="left"
-        toolbar:custom_showText="true"
-        />
+    <com.diyview.widget.DragHoriView
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="#f5f5f5"
+        app:nodestext="简单，一般，困难"
+        app:text_size="14"
+        android:layout_margin="10dp"
+        app:text_color="#333333"
+        app:drag_icon="@drawable/ic_drag"
+        app:circle_color="#D7D7D7">
+
+    </com.diyview.widget.DragHoriView>
 
 </LinearLayout>
