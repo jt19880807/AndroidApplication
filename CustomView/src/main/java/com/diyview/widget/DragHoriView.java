@@ -98,6 +98,27 @@ public class DragHoriView extends RelativeLayout implements View.OnTouchListener
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        mWidth=MeasureSpec.getSize(widthMeasureSpec);
+        int height=MeasureSpec.getSize(heightMeasureSpec);
+        int count=getChildCount();
+        mCenterSpace=dp2px(getContext(),8);
+
+
+    }
+
+    public int dp2px(Context context,float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+    }
+
+    @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         return false;
     }
