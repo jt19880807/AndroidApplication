@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.diyview.R;
@@ -44,10 +45,11 @@ public class CircleView extends View {
         }
         mPaint=new Paint();
         mPaint.setColor(mColor);
-        mCenterX=mCenterY=mRadius=getMeasuredWidth()==0?DEFAULT_RADIUS:getMeasuredWidth()/2;
+        mCenterX=mCenterY=mRadius=getMeasuredWidth()==0?DEFAULT_RADIUS/2:getMeasuredWidth()/2;
     }
 
     public float getRadius(){
+        Log.d("TAG","Radius="+mRadius);
         return mRadius;
     }
     public int getColor(){

@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.diyview.widget.DragHoriView
-
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="190dp"
         android:background="#f5f5f5"
-        app:nodestext="简单，一般，困难"
+        app:nodestext="简单，一般"
         app:text_size="14"
         android:layout_margin="10dp"
         app:text_color="#333333"
