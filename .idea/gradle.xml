@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/CustomView" />
+            <option value="$PROJECT_DIR$/Douban" />
             <option value="$PROJECT_DIR$/JTAppStore" />
             <option value="$PROJECT_DIR$/JTHuaBan" />
             <option value="$PROJECT_DIR$/RxjavaAndRetrofit" />
@@ -26,6 +27,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/CustomView" />
+            <option value="$PROJECT_DIR$/Douban" />
             <option value="$PROJECT_DIR$/JTAppStore" />
             <option value="$PROJECT_DIR$/JTHuaBan" />
             <option value="$PROJECT_DIR$/RxjavaAndRetrofit" />
