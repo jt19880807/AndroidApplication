@@ -18,7 +18,7 @@ import android.widget.ImageView;
  * Created by JiangTao on 2016/6/26.
  */
 public class Record extends ImageView {
-    private Paint paint;
+    private Paint mPaint;
     public Record(Context context) {
         this(context,null);
     }
@@ -31,13 +31,13 @@ public class Record extends ImageView {
     }
 
     private void init() {
-        paint=new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(14);
-        paint.setFilterBitmap(true);
-        paint.setDither(true);
+        mPaint=new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(14);
+        mPaint.setFilterBitmap(true);
+        mPaint.setDither(true);
     }
 
     @Override
@@ -47,11 +47,14 @@ public class Record extends ImageView {
         Bitmap b=((BitmapDrawable)drawable).getBitmap();
         Bitmap bitmap=b.copy(Bitmap.Config.ARGB_8888,true);
         int w=getWidth(),h=getHeight();
-//        canvas.drawCircle(w / 2, h / 2,
-//                w/ 2-7, paint);
-        Bitmap roundBitmap =  getCroppedBitmap(bitmap, w-14);
 
-        canvas.drawBitmap(roundBitmap, 7,7, null);
+        canvas.drawCircle(w / 2, h / 2,
+                w/ 2-7, mPaint);
+        mPaint.setStrokeWidth(1);
+        canvas.drawRect(0,0,w,h,mPaint);
+//        Bitmap roundBitmap =  getCroppedBitmap(bitmap, w-14);
+//
+//        canvas.drawBitmap(roundBitmap, 7,7, null);
     }
 
     public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
@@ -71,12 +74,13 @@ public class Record extends ImageView {
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
+        Log.d("TAG","sbmp.getWidth()/2-15="+(sbmp.getWidth()/2-15));
         paint.setStrokeWidth(sbmp.getWidth()/2-15);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.BLACK);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawCircle(sbmp.getWidth() / 2, sbmp.getHeight() / 2,
-                sbmp.getWidth() / 2-7, paint);
+                sbmp.getWidth()/2-56, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(sbmp, rect, rect, paint);
         //paint.setStrokeWidth(10);
