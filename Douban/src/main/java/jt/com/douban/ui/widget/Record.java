@@ -10,15 +10,23 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PictureDrawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 /**
  * Created by JiangTao on 2016/6/26.
  */
 public class Record extends ImageView {
-    private Paint mPaint;
+    private Paint mOutPaint;
+    private Paint mInnerPaint;
+    private int mWidth;
+    private int mheight;
+    private int outRingWidth;//外环宽度
+    private int innerRingWidth;//内环宽度
+    private Context mContext;
     public Record(Context context) {
         this(context,null);
     }
@@ -28,16 +36,47 @@ public class Record extends ImageView {
     public Record(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+        mContext=context;
     }
 
     private void init() {
-        mPaint=new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.BLACK);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(14);
-        mPaint.setFilterBitmap(true);
-        mPaint.setDither(true);
+        mOutPaint=new Paint();
+        mOutPaint.setAntiAlias(true);
+        mOutPaint.setColor(Color.BLACK);
+        mOutPaint.setStyle(Paint.Style.STROKE);
+        mOutPaint.setStrokeWidth(outRingWidth);
+        mOutPaint.setFilterBitmap(true);
+        mOutPaint.setDither(true);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension(measureSpec(widthMeasureSpec),measureSpec(heightMeasureSpec));
+    }
+
+    private int measureSpec(int measureSpec){
+        int mode=MeasureSpec.getMode(measureSpec);
+        int size=MeasureSpec.getSize(measureSpec);
+        int result=0;
+        if (mode==MeasureSpec.EXACTLY) {//精确值
+            result=size;
+        }
+        else {
+            WindowManager manager = (WindowManager)mContext
+                    .getSystemService(Context.WINDOW_SERVICE);
+            int screenWidth=manager.getDefaultDisplay().getWidth();
+            result=screenWidth/3;
+        }
+        return result;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mWidth=getWidth();
+        mheight=getHeight();
+        outRingWidth=mWidth/10;
+        innerRingWidth=outRingWidth*3/4;
     }
 
     @Override
@@ -46,53 +85,39 @@ public class Record extends ImageView {
         Drawable drawable=getDrawable();
         Bitmap b=((BitmapDrawable)drawable).getBitmap();
         Bitmap bitmap=b.copy(Bitmap.Config.ARGB_8888,true);
-        int w=getWidth(),h=getHeight();
-
-        canvas.drawCircle(w / 2, h / 2,
-                w/ 2-7, mPaint);
-        mPaint.setStrokeWidth(1);
-        canvas.drawRect(0,0,w,h,mPaint);
-//        Bitmap roundBitmap =  getCroppedBitmap(bitmap, w-14);
-//
-//        canvas.drawBitmap(roundBitmap, 7,7, null);
+        Log.d("TAG","outRingWidth="+outRingWidth);
+        mOutPaint.setStrokeWidth(outRingWidth);
+        canvas.drawCircle(mWidth / 2, mWidth / 2,mWidth/ 2-outRingWidth/2, mOutPaint);//画外部圆环
+        Bitmap roundBitmap =  getCroppedBitmap(bitmap, mWidth-2*outRingWidth);
+        canvas.drawBitmap(roundBitmap, outRingWidth,outRingWidth, null);
+        mOutPaint.setStrokeWidth(innerRingWidth);
+        canvas.drawCircle(mWidth / 2, mWidth / 2,(float)innerRingWidth*3/2, mOutPaint);
     }
 
-    public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
+    private  Bitmap getCroppedBitmap(Bitmap bmp, int width) {
         Bitmap sbmp;
-        if(bmp.getWidth() != radius || bmp.getHeight() != radius)
-            sbmp = Bitmap.createScaledBitmap(bmp, radius, radius, false);
+        if(bmp.getWidth() != width || bmp.getHeight() != width)
+            sbmp = Bitmap.createScaledBitmap(bmp, width, width, false);
         else
             sbmp = bmp;
         Bitmap output = Bitmap.createBitmap(sbmp.getWidth(),
                 sbmp.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
-        final int color = 0xffa19774;
-        final Paint paint = new Paint();
+        //final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, sbmp.getWidth(), sbmp.getHeight());
-
-        paint.setAntiAlias(true);
-        paint.setFilterBitmap(true);
-        paint.setDither(true);
-        Log.d("TAG","sbmp.getWidth()/2-15="+(sbmp.getWidth()/2-15));
-        paint.setStrokeWidth(sbmp.getWidth()/2-15);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(Color.BLACK);
+        mInnerPaint=new Paint();
+        mInnerPaint.setAntiAlias(true);
+        mInnerPaint.setFilterBitmap(true);
+        mInnerPaint.setDither(true);
+        mInnerPaint.setStrokeWidth(sbmp.getWidth()/2-innerRingWidth);
+        mInnerPaint.setStyle(Paint.Style.STROKE);
+        mInnerPaint.setColor(Color.BLACK);
         canvas.drawARGB(0, 0, 0, 0);
         canvas.drawCircle(sbmp.getWidth() / 2, sbmp.getHeight() / 2,
-                sbmp.getWidth()/2-56, paint);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(sbmp, rect, rect, paint);
-        //paint.setStrokeWidth(10);
-//        paint.setStyle(Paint.Style.FILL);
-//        paint.setColor(Color.BLACK);
-//        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-//        canvas.drawCircle(sbmp.getWidth() / 2, sbmp.getHeight() / 2,
-//                24, paint);
-//        paint.setColor(Color.parseColor("#009688"));
-//        canvas.drawCircle(sbmp.getWidth() / 2, sbmp.getHeight() / 2,
-//                17, paint);
-
+                (float)(sbmp.getWidth()/4+innerRingWidth/2), mInnerPaint);
+        mInnerPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(sbmp, rect, rect, mInnerPaint);
         return output;
     }
 }

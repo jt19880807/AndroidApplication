@@ -8,8 +8,8 @@
     android:background="#009688">
 
     <jt.com.douban.ui.widget.Record
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="centerInside"
         android:layout_gravity="center"
 
