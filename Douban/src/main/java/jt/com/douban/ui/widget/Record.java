@@ -65,7 +65,7 @@ public class Record extends ImageView {
             WindowManager manager = (WindowManager)mContext
                     .getSystemService(Context.WINDOW_SERVICE);
             int screenWidth=manager.getDefaultDisplay().getWidth();
-            result=screenWidth/3;
+            result=screenWidth*2/5;
         }
         return result;
     }
@@ -85,7 +85,7 @@ public class Record extends ImageView {
         Drawable drawable=getDrawable();
         Bitmap b=((BitmapDrawable)drawable).getBitmap();
         Bitmap bitmap=b.copy(Bitmap.Config.ARGB_8888,true);
-        Log.d("TAG","outRingWidth="+outRingWidth);
+       // Log.d("TAG","outRingWidth="+outRingWidth);
         mOutPaint.setStrokeWidth(outRingWidth);
         canvas.drawCircle(mWidth / 2, mWidth / 2,mWidth/ 2-outRingWidth/2, mOutPaint);//画外部圆环
         Bitmap roundBitmap =  getCroppedBitmap(bitmap, mWidth-2*outRingWidth);
