@@ -1,59 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.activity.MainActivity"
-    android:background="#009688">
+    tools:context=".ui.activity.MainActivity">
+    <jt.com.douban.ui.widget.BlurImageView
+        android:id="@+id/backgroundImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/fengmian"
+        android:background="@color/colorPrimary"/>
 
-    <jt.com.douban.ui.widget.Record
-        android:id="@+id/record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerInside"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@mipmap/fengmian"/>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:background="#00ffffff">
-        <ImageButton
-            android:id="@+id/ibtn_previous"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <jt.com.douban.ui.widget.Record
+            android:id="@+id/record"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_previous_72px"
-            android:background="#00000000"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
-        <ImageButton
-            android:id="@+id/ibtn_play"
+            android:scaleType="centerInside"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@mipmap/fengmian"/>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:src="@mipmap/icon_play_72px"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
-        <ImageButton
-            android:id="@+id/ibtn_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_next_72px"
-            android:background="#00000000"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
-        <ImageButton
-            android:id="@+id/ibtn_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/icon_menu_72px"
-            android:background="#00000000"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="#00ffffff">
+            <ImageButton
+                android:id="@+id/ibtn_previous"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_previous_72px"
+                android:background="#00000000"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <ImageButton
+                android:id="@+id/ibtn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:src="@mipmap/icon_play_72px"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <ImageButton
+                android:id="@+id/ibtn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_next_72px"
+                android:background="#00000000"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <ImageButton
+                android:id="@+id/ibtn_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_menu_72px"
+                android:background="#00000000"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
 
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

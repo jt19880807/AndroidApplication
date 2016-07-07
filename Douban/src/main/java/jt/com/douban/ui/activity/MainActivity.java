@@ -3,6 +3,11 @@ package jt.com.douban.ui.activity;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.ObjectAnimator;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +16,14 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import jt.com.douban.R;
+import jt.com.douban.ui.utils.FastBlur;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView record;
     private ImageButton ibtnPlay;
     private boolean isPlaying=false;
     private Animator animator;
+    private ImageView backgroundImg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void init() {
         record=(ImageView) findViewById(R.id.record);
         ibtnPlay= (ImageButton) findViewById(R.id.ibtn_play);
+        backgroundImg=(ImageView)findViewById(R.id.backgroundImg);
         animator= AnimatorInflater.loadAnimator(MainActivity.this,R.animator.record_animator);
         animator.setTarget(record);
         ibtnPlay.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(isPlaying){
                     animator.pause();
                     isPlaying=false;
-                    ibtnPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_pause_72px));
+                    ibtnPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_play_72px));
                 }
                 else {
                     if(animator.isPaused()){
@@ -45,15 +53,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         animator.start();
                     }
                     isPlaying=true;
-                    ibtnPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_play_72px));
+                    ibtnPlay.setImageDrawable(getResources().getDrawable(R.mipmap.icon_pause_72px));
                 }
-                //Log.d("TAG","isRunning="+animator.isRunning()+"isPaused="+animator.isPaused()+"isStarted="+animator.isStarted());
-//                ObjectAnimator animator=ObjectAnimator.ofFloat(record,"rotation",0,360);
-//                animator.setDuration(5000).start();
 
             }
         });
     }
+
 
     @Override
     public void onClick(View v) {

@@ -103,8 +103,6 @@ public class Record extends ImageView {
         Bitmap output = Bitmap.createBitmap(sbmp.getWidth(),
                 sbmp.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
-
-        //final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, sbmp.getWidth(), sbmp.getHeight());
         mInnerPaint=new Paint();
         mInnerPaint.setAntiAlias(true);
