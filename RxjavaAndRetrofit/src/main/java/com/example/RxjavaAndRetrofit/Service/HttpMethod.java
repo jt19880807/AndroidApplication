@@ -47,7 +47,7 @@ public class HttpMethod {
         return singlectionHolder.INSTANCE;
     }
 
-    public  void getTopMovie(Subscriber<List<MovieModel.SubjectsBean>> subscriber,int start,int count){
+    public void getTopMovie(Subscriber<List<MovieModel.SubjectsBean>> subscriber,int start,int count){
         movieService.getTopMovie(start,count)
                 .map(new HttpResultFunc<List<MovieModel.SubjectsBean>>())
                 .subscribeOn(Schedulers.io())
