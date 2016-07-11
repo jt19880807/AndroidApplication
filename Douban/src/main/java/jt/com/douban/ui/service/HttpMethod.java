@@ -4,11 +4,15 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import jt.com.douban.ui.model.ChannelBean;
+import jt.com.douban.ui.model.PlayBean;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Devin.Jiang on 2016-07-08.
@@ -50,6 +54,25 @@ public class HttpMethod {
     public void getChannels(Subscriber<List<ChannelBean>> subscriber) {
         douBanService=channelRetrofit.create(DouBanService.class);
         douBanService.getChannels()
-
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
     }
+
+    public void getSongs(Subscriber<List<PlayBean.SongBean>> subscriber,int channel){
+        douBanService=songRetrofit.create(DouBanService.class);
+        douBanService.getSongs("n",channel,"mainsite")
+                .map(new Func1<List<PlayBean>, Object>() {
+
+                    @Override
+                    public Object call(List<PlayBean> playBeen) {
+                        if()
+                        return null;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    //private class HttpResultFunc<T> implements Func1<HttpResult<T>,T>
 }
