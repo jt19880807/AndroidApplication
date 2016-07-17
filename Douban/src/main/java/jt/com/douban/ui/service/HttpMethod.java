@@ -11,6 +11,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -62,14 +63,6 @@ public class HttpMethod {
     public void getSongs(Subscriber<List<PlayBean.SongBean>> subscriber,int channel){
         douBanService=songRetrofit.create(DouBanService.class);
         douBanService.getSongs("n",channel,"mainsite")
-                .map(new Func1<List<PlayBean>, Object>() {
-
-                    @Override
-                    public Object call(List<PlayBean> playBeen) {
-                        if()
-                        return null;
-                    }
-                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }

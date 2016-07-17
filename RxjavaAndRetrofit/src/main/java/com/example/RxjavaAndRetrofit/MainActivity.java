@@ -49,11 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
         getMovie(0,10);
-
-
     }
 
     private void init() {
@@ -65,13 +62,9 @@ public class MainActivity extends AppCompatActivity {
         getTopMovieOnNext=new SubscriberOnNextListener<List<MovieModel.SubjectsBean>>(){
             @Override
             public void onNext(List<MovieModel.SubjectsBean> subjectsBeen) {
-
                 if(datalist.size()>0) {
-
                     Log.d("Log","=="+(datalist.get(0).getId() == subjectsBeen.get(0).getId()));
                     if (datalist.get(0).getId() == subjectsBeen.get(0).getId()) {
-
-
                         Toast.makeText(MainActivity.this, "没有最新数据", Toast.LENGTH_SHORT).show();
                     } else {
                         Log.d("Log","datalist-->"+datalist.get(0).getId());
@@ -160,6 +153,5 @@ public class MainActivity extends AppCompatActivity {
 //        HttpMethod.getInstance().getTopMovie(subscriber,0,2);
         HttpMethod.getInstance().getTopMovie(
                 new ProgressSubscriber(getTopMovieOnNext,MainActivity.this),start,count);
-        //Log.d("Log1",movieAdapter.mDataList.size()+"");
     }
 }

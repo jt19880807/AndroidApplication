@@ -21,7 +21,7 @@ public interface DouBanService {
      * @return
      */
     @GET("j/mine/playlist")
-    Observable<List<PlayBean>> getSongs(@Query("type") String type, @Query("channel") int channel,
+    Observable<List<PlayBean.SongBean>> getSongs(@Query("type") String type, @Query("channel") int channel,
                                                  @Query("from") String from);
 
     /**
